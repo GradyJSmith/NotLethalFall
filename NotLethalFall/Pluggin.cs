@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BepInEx;
+using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using NotLethalFall.Patches;
@@ -17,6 +18,8 @@ namespace NotLethalFall
         private const string modGUID = "GStar.NotLethalFall";
         private const string modName = "NotLethalFall";
         private const string modVersion = "1.1.0";
+
+        public static ConfigEntry<bool> configFallDamageOn;
 
         private readonly Harmony harmony = new Harmony(modGUID);
 
@@ -34,6 +37,11 @@ namespace NotLethalFall
             mls = BepInEx.Logging.Logger.CreateLogSource(modGUID);
 
             mls.LogInfo("NotLethalFall is running...");
+
+            configFallDamageOn = Config.Bind("Fall Damage",
+                                                "Fall Damage On",
+                                                false,
+                                                "Whether or not to enable fall damage");
 
             harmony.PatchAll(typeof(NotLethalFallBase));
             harmony.PatchAll(typeof(PlayerControllerBPatch));
