@@ -16,7 +16,7 @@ namespace NotLethalFall
     {
         private const string modGUID = "GStar.NotLethalFall";
         private const string modName = "NotLethalFall";
-        private const string modVersion = "1.0.0";
+        private const string modVersion = "1.1.0";
 
         private readonly Harmony harmony = new Harmony(modGUID);
 
@@ -37,6 +37,7 @@ namespace NotLethalFall
 
             harmony.PatchAll(typeof(NotLethalFallBase));
             harmony.PatchAll(typeof(PlayerControllerBPatch));
+            harmony.PatchAll(typeof(KickIfModNotInstalled));
         }
 
     }
