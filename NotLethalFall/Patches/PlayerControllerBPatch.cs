@@ -16,7 +16,8 @@ namespace NotLethalFall.Patches
         [HarmonyPrefix]
         static void NotLethalFallPatch(ref bool ___takingFallDamage)
         {
-            Console.WriteLine("Preventing Fall Damage");
+            // This line is added for debugging, uncomment is this loop is not running.
+            //Console.WriteLine("Preventing Fall Damage");
             ___takingFallDamage = false;
         }
     }
